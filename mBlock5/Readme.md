@@ -1,4 +1,4 @@
 ## Giới thiệu ##
 ---
-
-Đây là khu vực dành cho Mblock 5
+Hướng dẫn nạp chương trình & cài đặt Extension trên mBlock với các phần cứng MakerEdu
+https://youtu.be/z7cMTtnZxIQ 
