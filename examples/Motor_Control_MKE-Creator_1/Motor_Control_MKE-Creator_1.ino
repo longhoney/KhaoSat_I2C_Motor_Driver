@@ -6,9 +6,9 @@
 #include <SoftwareSerial.h>
 
 void setup() {
-  pinMode(6,OUTPUT);
+  pinMode(6,OUTPUT);  //PWM
   pinMode(7,OUTPUT);
-  pinMode(5,OUTPUT);
+  pinMode(5,OUTPUT);  //PWM
   pinMode(4,OUTPUT);
   // MTR A forward 100% speed
   analogWrite(6,map(100, 0, 100, 0, 1000)); //set PWM
@@ -37,7 +37,6 @@ void setup() {
   // Stop MTR B
   analogWrite(5,map(0, 0, 100, 0, 1000));
   digitalWrite(4,0);
-
 }
 
 void loop() {
