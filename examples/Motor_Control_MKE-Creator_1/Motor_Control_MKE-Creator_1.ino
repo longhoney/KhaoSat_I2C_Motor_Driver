@@ -5,11 +5,6 @@
 #include <Wire.h>
 #include <SoftwareSerial.h>
 
-void _delay(float seconds) {
-  long endTime = millis() + seconds * 1000;
-  while(millis() < endTime) _loop();
-}
-
 void setup() {
   pinMode(6,OUTPUT);
   pinMode(7,OUTPUT);
@@ -45,9 +40,15 @@ void setup() {
 
 }
 
+void loop() {
+  _loop();
+}
+
+//Thiet lap cac ham
 void _loop() {
 }
 
-void loop() {
-  _loop();
+void _delay(float seconds) {
+  long endTime = millis() + seconds * 1000;
+  while(millis() < endTime) _loop();
 }
