@@ -27,10 +27,10 @@
  * IN3  : D6 (~)
  * IN4  : D7
  */
-#define PIN_IN1 4 //! D4     --> A-1A
-#define PIN_IN2 5 //! D5 (~) --> A-1B
-#define PIN_IN3 6 //! D6 (~)
-#define PIN_IN4 7 //! D7
+#define PIN_IN1 4 //! D4     --> A-1B
+#define PIN_IN2 5 //! D5 (~) --> A-1A
+#define PIN_IN3 6 //! D6 (~) --> B-1A
+#define PIN_IN4 7 //! D7     --> B-1B
 
 /* ------------------------------------------------------------------------- */
 /*                                   OBJECT                                  */
