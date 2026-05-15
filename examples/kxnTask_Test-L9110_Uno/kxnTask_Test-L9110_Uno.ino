@@ -40,6 +40,7 @@ void loop() {
         // digitalWrite(2, HIGH);
         Serial.println("Hai động cơ đứng yên");
         d9110.motorA_stop();
+        d9110.motorB_stop();
         break;
       case '1':
         // digitalWrite(3, HIGH);
@@ -47,20 +48,40 @@ void loop() {
         d9110.motorA_fw(100);
         //delay(5000);
         break;
+      case '2':
+        // digitalWrite(3, HIGH);
+        Serial.println("Điều khiển động cơ kênh A - Quay thuận 50%");
+        d9110.motorA_fw(50);
+        break;
       case '3':
         // digitalWrite(4, HIGH);
         Serial.println("Điều khiển động cơ kênh A - Quay ngược 100%");
         d9110.motorA_bw(100);
+        break;
+      case '4':
+        // digitalWrite(4, HIGH);
+        Serial.println("Điều khiển động cơ kênh A - Quay ngược 50%");
+        d9110.motorA_bw(50);
         break;
       case '5':
         // digitalWrite(5, HIGH);
         Serial.println("Điều khiển động cơ kênh B - Quay thuận 100%");
         d9110.motorB_fw(100);
         break;
+      case '6':
+        // digitalWrite(5, HIGH);
+        Serial.println("Điều khiển động cơ kênh B - Quay thuận 50%");
+        d9110.motorB_fw(50);
+        break;
       case '7':
         // digitalWrite(6, HIGH);
         Serial.println("Điều khiển động cơ kênh B - Quay ngược 100%");
         d9110.motorB_bw(100);
+        break;
+       case '8':
+        // digitalWrite(6, HIGH);
+        Serial.println("Điều khiển động cơ kênh B - Quay ngược 50%");
+        d9110.motorB_bw(50);
         break;
       /*
       default:
