@@ -46,6 +46,15 @@ void setup()
 {
   Serial.begin(115200);
   demo.setup(PIN_IN1, PIN_IN2, PIN_IN3, PIN_IN4);
+
+  Serial.println("Điều khiển động cơ kênh A...");
+  Serial.println();
+  
+  // Serial.println("Quay thuận 100%");
+  // demo.motorA_fw(100);
+
+  Serial.println("Quay thuận 50%");
+  demo.motorA_fw(50);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -54,37 +63,47 @@ void setup()
 
 void loop()
 {
+  /*
   Serial.println("Điều khiển động cơ kênh A...");
   Serial.println();
   
   Serial.println("Quay thuận 100%");
   demo.motorA_fw(100);
-  delay(5000);
+  // delay(5000);
+
+  // Serial.println("Quay thuận 50%");
+  // demo.motorA_fw(50);
+  // delay(5000);
   
-  Serial.println("Quay ngược 50%");
-  demo.motorA_bw(50);
-  delay(5000);
+  // Serial.println("Quay ngược 50%");
+  // demo.motorA_bw(50);
+  // delay(5000);
   
-  Serial.println("Đứng yên");
-  demo.motorA_stop();
-  delay(5000);
-  
+  // Serial.println("Đứng yên");
+  // demo.motorA_stop();
+  // delay(5000);
+  */
 
   /* ----------------------------------------------------------------------- */
-  
+  /*
   Serial.println("Điều khiển động cơ kênh B...");
   Serial.println();
 
   Serial.println("Quay thuận 100%");
   demo.motorB_fw(100);
-  delay(5000);
+  // delay(5000);
+
+  Serial.println("Quay thuận 50%");
+  demo.motorB_fw(50);
+  // delay(5000);
 
   Serial.println("Quay ngược 50%");
   demo.motorB_bw(50);
-  delay(5000);
+  // delay(5000);
 
   Serial.println("Đứng yên");
   demo.motorB_stop();
-  delay(5000);
+  // delay(5000);
+  */
   
 }
