@@ -7,10 +7,10 @@
 #include "Makerlabvn_SimpleMotor.h"
 
 //Định nghĩa chân
-#define PIN_IN1 4 //! D4     --> A-1A
-#define PIN_IN2 5 //! D5 (~) --> A-1B
-#define PIN_IN3 6 //! D6 (~) --> B-1A
-#define PIN_IN4 7 //! D7     --> B-1B
+#define PIN_IN1 6  //! D6 (~) --> A-1A
+#define PIN_IN2 5  //! D5  (~) --> A-1B
+#define PIN_IN3 9  //! D9  (~) --> B-1A
+#define PIN_IN4 10 //! D10 (~) --> B-1B
 
 //Khai báo đối tượng d9110 thuộc class Makerlabvn_SimpleMotor
 Makerlabvn_SimpleMotor d9110;
