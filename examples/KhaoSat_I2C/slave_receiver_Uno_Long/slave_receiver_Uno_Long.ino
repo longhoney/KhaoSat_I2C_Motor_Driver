@@ -28,7 +28,7 @@ void receiveEvent(int howMany) { //dem Byte nhan ve
   while (1 < Wire.available()) { // loop through all but the last //sanSang //chua 1 byte
     char c = Wire.read(); // receive byte as a character
     Serial.print(c,HEX);         // print the character in Hex format
-    Serial.print(" ");  //leave space
+    //Serial.print(" ");  //leave space
   }
   int x = Wire.read();    // receive byte as an integer
   Serial.println(x,HEX);         // print the integer

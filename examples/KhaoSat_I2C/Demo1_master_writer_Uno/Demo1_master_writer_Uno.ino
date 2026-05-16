@@ -38,26 +38,26 @@ void loop() {
 
   if (tempInput == '1') {   //Quay thuan, 50%
     delay(15);
-    Wire.beginTransmission(40); // transmit to device #40
-    Wire.write("T50");        // sends five bytes
+    Wire.beginTransmission(64); // transmit to device #40
+    Wire.write("0105");        // sends five bytes
     Wire.endTransmission();    // stop transmitting
   }
   else if (tempInput == '2') {    //Ngung quay thuan
     delay(15);
-    Wire.beginTransmission(40); // transmit to device #40
-    Wire.write("STT");        // sends five bytes
+    Wire.beginTransmission(64); // transmit to device #40
+    Wire.write("0100");        // sends five bytes
     Wire.endTransmission();    // stop transmitting
   }
   else if (tempInput == '3') {    //Quay nghich, 100%
     delay(15);
-    Wire.beginTransmission(40); // transmit to device #40
-    Wire.write("N100");        // sends five bytes
+    Wire.beginTransmission(64); // transmit to device #40
+    Wire.write("0010");        // sends five bytes
     Wire.endTransmission();    // stop transmitting
   }
   else if (tempInput == '4') {    //Ngung quay ngich
     delay(15);
-    Wire.beginTransmission(40); // transmit to device #40
-    Wire.write("STN");        // sends five bytes
+    Wire.beginTransmission(64); // transmit to device #40
+    Wire.write("0000");        // sends five bytes
     Wire.endTransmission();    // stop transmitting
   }
   tempInput = 0;
