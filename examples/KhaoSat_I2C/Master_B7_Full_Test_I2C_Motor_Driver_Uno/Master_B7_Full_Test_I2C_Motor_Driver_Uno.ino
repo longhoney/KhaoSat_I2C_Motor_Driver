@@ -25,29 +25,29 @@ void loop()
     {
         // myDriver.writeS1(45);
         // myDriver.writeS2(135);
-        // myDriver.writeMA(1, 50);
-        myDriver.writeMB(1, 50);
+        myDriver.writeMA(1, 50);
+        // myDriver.writeMB(1, 50);
     }
     else if (tempInput == '2')
     {
         // myDriver.writeS1(90);
         // myDriver.writeS2(90);
-        // myDriver.writeMA(1, 0);
-        myDriver.writeMB(1, 0);
+        myDriver.writeMA(1, 0);
+        // myDriver.writeMB(1, 0);
     }
     else if (tempInput == '3')
     {
         // myDriver.writeS1(135);
         // myDriver.writeS2(45);
-        // myDriver.writeMA(0, 100);
-        myDriver.writeMB(0, 100);
+        myDriver.writeMA(0, 100);
+        // myDriver.writeMB(0, 100);
     }
     else if (tempInput == '4')
     {
         // myDriver.writeS1(0);
         // myDriver.writeS2(0);
-        // myDriver.writeMA(0, 0);
-        myDriver.writeMB(0, 0);
+        myDriver.writeMA(0, 0);
+        // myDriver.writeMB(0, 0);
     }
     tempInput = 0;
 }
