@@ -13,7 +13,7 @@
 #include <Wire.h>
 
 void setup() {
-  Wire.begin(64);                // join I2C bus with address #8 //dia chi I2C cua Slave dang thap phan
+  Wire.begin(40);                // join I2C bus with address #8 //dia chi I2C cua Slave dang thap phan
   Wire.onReceive(receiveEvent); // register event //con tro ham
   Serial.begin(115200);           // start serial for output //UArt1
 }
@@ -27,8 +27,9 @@ void loop() {
 void receiveEvent(int howMany) { //dem Byte nhan ve
   while (1 < Wire.available()) { // loop through all but the last //sanSang //chua 1 byte
     char c = Wire.read(); // receive byte as a character
-    Serial.print(c,HEX);         // print the character in Hex format
-    Serial.print(" ");  //leave space
+    // Serial.print(c,HEX);         // print the character in Hex format
+    // Serial.print(" ");  //leave space
+    Serial.print(c);  
   }
   // int x = Wire.read();    // receive byte as an integer
   // Serial.println(x,HEX);         // print the integer
