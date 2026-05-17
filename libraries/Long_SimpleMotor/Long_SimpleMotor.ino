@@ -14,6 +14,7 @@
 
 
 // Định nghĩa chân cho MKE-Creator // KHONOG THAY DOI TOC DO DUOC
+// Định nghĩa chân cho L298
 #define PIN_ENA 6 //! D6 (~)
 #define PIN_IN1 9 //! D9 (~)
 #define PIN_IN2 8 //! D8 --> (chan +), gan cong nap code
@@ -30,8 +31,8 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Start Test, input from 0 (OFF) to 8");
   Serial.println("Baud 115200, No line ending");
-  // d9110.setup(PIN_IN1, PIN_IN2, PIN_IN3, PIN_IN4);
-  d9110.setup(PIN_ENA, PIN_IN1, PIN_IN2, PIN_IN3, PIN_IN4, PIN_ENB);
+  // d9110.setup(PIN_IN1, PIN_IN2, PIN_IN3, PIN_IN4); //4pin
+  d9110.setup(PIN_ENA, PIN_IN1, PIN_IN2, PIN_IN3, PIN_IN4, PIN_ENB); //6pin
 }
 
 void loop() {
@@ -58,7 +59,10 @@ void loop() {
         Serial.println("Điều khiển động cơ kênh A - Quay thuận 50%");
         d9110.motorA_fw(50);
         d9110.motorB_stop();
-        //delay(5000);
+        
+        // Serial.println("Xoay trái tốc độ 10%.");
+        // d9110.car_rotateL(30);
+        // delay(5000);
         break;
       case '3':
         // digitalWrite(4, HIGH);
@@ -71,6 +75,9 @@ void loop() {
         Serial.println("Điều khiển động cơ kênh A - Quay ngược 50%");
         d9110.motorA_bw(50);
         d9110.motorB_stop();
+        // Serial.println("Xoay phải tốc độ 50%.");
+        // d9110.car_rotateR(20);
+        // delay(5000);
         break;
       case '5':
         // digitalWrite(5, HIGH);

@@ -147,8 +147,8 @@ void Long_SimpleMotor::motorB_fw(int speed)
     break;
   case Long_SimpleMotor_Type_L298_6Pin:
     /* code */
-    digitalWrite(this->_pinIn3, 1);
-    digitalWrite(this->_pinIn4, 0);
+    digitalWrite(this->_pinIn3, 0);
+    digitalWrite(this->_pinIn4, 1);
     analogWrite(this->_pinEnB, speed);
     break;
   
@@ -217,8 +217,8 @@ void Long_SimpleMotor::motorB_bw(int speed)
     break;
   case Long_SimpleMotor_Type_L298_6Pin:
     /* code */
-    digitalWrite(this->_pinIn3, 0);
-    digitalWrite(this->_pinIn4, 1);
+    digitalWrite(this->_pinIn3, 1);
+    digitalWrite(this->_pinIn4, 0);
     analogWrite(this->_pinEnB, speed);
     break;
   
