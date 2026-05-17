@@ -1,0 +1,86 @@
+// Wire Slave Receiver
+// by Nicholas Zambetti <http://www.zambetti.com>
+
+// d9110nstrates use of the Wire library
+// Receives data as an I2C/TWI slave device
+// Refer to the "Wire Master Writer" example for use with this
+
+// Created 29 March 2006
+
+// This example code is in the public domain.
+
+
+#include <Wire.h>
+#include "Makerlabvn_SimpleMotor.h"
+
+//KHai bao chan de dieu khien dong co
+#define PIN_IN1 3  //! D3 (~) --> A-1B
+#define PIN_IN2 9  //! D9 (~) --> A-1A
+#define PIN_IN3 10 //! D6 (~) --> B-1A
+#define PIN_IN4 11 //! D7 (~) --> B-1B
+
+//Khai bao bien gop byte
+String dataHex = "";
+
+//Khai bao doi tuong
+Makerlabvn_SimpleMotor d9110;
+
+void setup() {
+  Wire.begin(64);                // join I2C bus with address #8 //dia chi I2C cua Slave dang thap phan
+  Wire.onReceive(receiveEvent); // register event //con tro ham
+  Serial.begin(115200);           // start serial for output //UArt1
+  d9110.setup(PIN_IN1, PIN_IN2, PIN_IN3, PIN_IN4);
+}
+
+void loop() {
+  delay(100);
+}
+
+// function that executes whenever data is received from master
+// this function is registered as an event, see setup()
+void receiveEvent(int howMany) { //dem Byte nhan ve
+  while (Wire.available()) { // loop through all but the last //sanSang //chua 1 byte
+    byte c = Wire.read(); // receive byte as a character
+    // Serial.print(c,HEX);         // print the character in Hex format
+    // Serial.print(c);
+    // Serial.print(" ");  //leave space
+   
+    // In HEX và ghép chuỗi
+    dataHex += String(c, HEX);
+  }
+  // Chuyển thành chữ HOA cho dễ so sánh
+  dataHex.toUpperCase();
+  
+  Serial.print("Nhan duoc: ");
+  Serial.println(dataHex);
+
+    // So sánh lệnh
+  if (dataHex == "40107F1C1") {
+    dataHex = ""; //Xoa noi dung cu
+    Serial.println("Động cơ A quay thuận, tốc độ 50%");
+    d9110.motorA_fw(50);
+  }
+  else if (dataHex == "40100142") {
+    dataHex = ""; //Xoa noi dung cu
+    Serial.println("Động cơ A ngừng quay thuận");
+    d9110.motorA_stop(); //tam thoi dung chung
+  }
+  else if (dataHex == "4010FF040") {
+    dataHex = ""; //Xoa noi dung cu
+    Serial.println("Động cơ A quay nghịch, tốc độ 100%");
+    d9110.motorA_bw(100);
+  }
+  else if (dataHex == "40100041") {
+    dataHex = ""; //Xoa noi dung cu
+    Serial.println("Động cơ A ngừng quay nghịch");
+    d9110.motorA_stop(); //tam thoi dung chung
+  }
+  else {
+    dataHex = ""; //Xoa noi dung cu
+    Serial.println("Lenh khong hop le");
+  }
+  
+  // int x = Wire.read();    // receive byte as an integer
+  // Serial.print("\t");
+  // Serial.println(x,HEX);         // print the integer
+}
