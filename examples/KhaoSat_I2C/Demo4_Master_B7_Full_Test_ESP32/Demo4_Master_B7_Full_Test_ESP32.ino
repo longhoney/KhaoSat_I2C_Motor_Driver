@@ -1,6 +1,6 @@
 #include "Makerlabvn_I2C_Motor_Driver.h"
 
-Makerlabvn_I2C_Motor_Driver myDriver(0);
+Makerlabvn_I2C_Motor_Driver myDriver(0); //0 = 0x40 (HEX) và 64 (DEC)
 
 char tempInput = 0;
 

@@ -14,10 +14,10 @@
 #include "Makerlabvn_SimpleMotor.h"
 
 //KHai bao chan de dieu khien dong co
-#define PIN_IN1 3  //! D3 (~) --> A-1B
-#define PIN_IN2 9  //! D9 (~) --> A-1A
-#define PIN_IN3 10 //! D6 (~) --> B-1A
-#define PIN_IN4 11 //! D7 (~) --> B-1B
+#define PIN_IN1 3  //! D3  (~) --> A-1B
+#define PIN_IN2 9  //! D9  (~) --> A-1A
+#define PIN_IN3 10 //! D10 (~) --> B-1A
+#define PIN_IN4 11 //! D11 (~) --> B-1B
 
 //Khai bao bien gop byte
 String dataHex = "";
@@ -69,6 +69,8 @@ void receiveEvent(int howMany) { //dem Byte nhan ve
     dataHex = ""; //Xoa noi dung cu
     Serial.println("Động cơ A quay nghịch, tốc độ 100%");
     d9110.motorA_bw(100);
+    // Serial.println("Động cơ A quay nghịch, tốc độ 50%");
+    // d9110.motorA_bw(50);
   }
   else if (dataHex == "40100041") {
     dataHex = ""; //Xoa noi dung cu
