@@ -46,21 +46,26 @@ void receiveEvent(int howMany) { //dem Byte nhan ve
     // So sánh lệnh
   if (dataHex == "40107F1C1") {
     Serial.println("Động cơ A quay thuận, tốc độ 50%");
+    dataHex = ""; //Xoa noi dung cu
   }
 
   else if (dataHex == "40100142") {
     Serial.println("Động cơ A ngừng quay thuận");
+    dataHex = ""; //Xoa noi dung cu
   }
 
-  else if (dataHex == "4010FFFFFFFF040") {
+  else if (dataHex == "4010FF040") {
     Serial.println("Động cơ A quay nghịch, tốc độ 100%");
+    dataHex = ""; //Xoa noi dung cu
   }
 
   else if (dataHex == "40100041") {
     Serial.println("Động cơ A ngừng quay nghịch");
+    dataHex = ""; //Xoa noi dung cu
   }
   else {
     Serial.println("Lenh khong hop le");
+    dataHex = ""; //Xoa noi dung cu
   }
 
   /*if (Serial.available() > 0) {
