@@ -75,16 +75,19 @@ void Long_SimpleMotor::setup(
   _pinIn4 = pinIn4;
   this->_pinEnA = pinEnA;
   this->_pinEnB = pinEnB;
-
+  pinMode(_pinEnA, OUTPUT);
   pinMode(_pinIn1, OUTPUT);     // Không thấy khai báo cho 2 chân EnA và EnB
   pinMode(_pinIn2, OUTPUT);
   pinMode(_pinIn3, OUTPUT);
   pinMode(_pinIn4, OUTPUT);
+  pinMode(_pinEnB, OUTPUT);
 
+  digitalWrite(_pinEnA, LOW);
   digitalWrite(_pinIn1, LOW);
   digitalWrite(_pinIn2, LOW);
   digitalWrite(_pinIn3, LOW);
   digitalWrite(_pinIn4, LOW);
+  digitalWrite(_pinEnB, LOW);
 }
 
 /* ------------------------------------------------------------------------- */

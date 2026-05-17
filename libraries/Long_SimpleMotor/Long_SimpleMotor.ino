@@ -6,18 +6,21 @@
 #include "Long_SimpleMotor.h"
 
 // Định nghĩa chân cho L9110
-#define PIN_IN1 3  //! D3  (~) --> A-1B
-#define PIN_IN2 9  //! D9  (~) --> A-1A (chan +)
-#define PIN_IN3 10 //! D10 (~) --> B-1A (chan +)
-#define PIN_IN4 11 //! D11 (~) --> B-1B
+// #define PIN_IN1 3  //! D3  (~) --> A-1B
+// #define PIN_IN2 9  //! D9  (~) --> A-1A (chan +)
+// #define PIN_IN3 10 //! D10 (~) --> B-1A (chan +)
+// #define PIN_IN4 11 //! D11 (~) --> B-1B
 
 
-/*Định nghĩa chân
-#define PIN_IN1 3  //! D3  (~) --> A-1B
-#define PIN_IN2 9  //! D9  (~) --> A-1A
-#define PIN_IN3 10 //! D10 (~) --> B-1A
-#define PIN_IN4 11 //! D11 (~) --> B-1B
-*/
+
+// Định nghĩa chân cho MKE-Creator // KHONOG THAY DOI TOC DO DUOC
+#define PIN_ENA 6 //! D6 (~)
+#define PIN_IN1 9 //! D9 (~)
+#define PIN_IN2 8 //! D8 --> (chan +), gan cong nap code
+#define PIN_IN3 4 //! D4 --> (chan +), gan cong nap code
+#define PIN_IN4 7 //! D7 
+#define PIN_ENB 5 //! D5 (~)
+
 
 //Khai báo đối tượng d9110 thuộc class Makerlabvn_SimpleMotor
 Long_SimpleMotor d9110;
@@ -27,7 +30,8 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Start Test, input from 0 (OFF) to 8");
   Serial.println("Baud 115200, No line ending");
-  d9110.setup(PIN_IN1, PIN_IN2, PIN_IN3, PIN_IN4);
+  // d9110.setup(PIN_IN1, PIN_IN2, PIN_IN3, PIN_IN4);
+  d9110.setup(PIN_ENA, PIN_IN1, PIN_IN2, PIN_IN3, PIN_IN4, PIN_ENB);
 }
 
 void loop() {
