@@ -1,5 +1,5 @@
-#ifndef LONG_SIMPLE_MOTOR_H
-#define LONG_SIMPLE_MOTOR_H
+#ifndef Makerlabvn_SimpleMotor_LONG_H
+#define Makerlabvn_SimpleMotor_LONG_H
 
 /*
  * Quy ước:
@@ -16,17 +16,17 @@
 
 // Khai báo giá trị quy định loại motor driver đang sử dụng
 enum{   //https://topdev.vn/blog/kieu-enum-trong-c-c-code-vi-du-enumeration-trong-c-c/
-  Long_SimpleMotor_Type_L298_4Pin,   //Truoc mat chi dung voi L9110
-  Long_SimpleMotor_Type_L298_6Pin, 
-  Long_SimpleMotor_Type_I2C,
+  Makerlabvn_SimpleMotor_LONG_Type_L298_4Pin,   //Truoc mat chi dung voi L9110
+  Makerlabvn_SimpleMotor_LONG_Type_L298_6Pin, 
+  Makerlabvn_SimpleMotor_LONG_Type_I2C,
 };
 
 //Khai báo giá trị quy định trạng thái của motor driver
 enum{
-  Long_SimpleMotor_State_moveFrom0,
-  Long_SimpleMotor_State_moveFromCW,
-  Long_SimpleMotor_State_moveFromCCW,
-  Long_SimpleMotor_State_StopThenMoveFrom0,
+  Makerlabvn_SimpleMotor_LONG_State_moveFrom0,
+  Makerlabvn_SimpleMotor_LONG_State_moveFromCW,
+  Makerlabvn_SimpleMotor_LONG_State_moveFromCCW,
+  Makerlabvn_SimpleMotor_LONG_State_StopThenMoveFrom0,
 };
 
 /* ------------------------------------------------------------------------- */
@@ -34,7 +34,7 @@ enum{
 /* ------------------------------------------------------------------------- */
 // https://topdev.vn/blog/co-ban-ve-class-trong-c/
 // https://www.geeksforgeeks.org/cpp/c-classes-and-objects/
-class Long_SimpleMotor: public kxnTask    //class này đang kế thừa (inheritance) từ class kxnTask
+class Makerlabvn_SimpleMotor_LONG: public kxnTask    //class này đang kế thừa (inheritance) từ class kxnTask
 {
   private:  // Thuộc tính private 1
     uint8_t type;
@@ -44,19 +44,19 @@ class Long_SimpleMotor: public kxnTask    //class này đang kế thừa (inheri
     Makerlabvn_I2C_Motor_Driver *i2cMotorDriver;
   public: // Thuộc tính public 1
     /* ------------------------------- HÀM TẠO ------------------------------- */
-    Long_SimpleMotor(){}
+    Makerlabvn_SimpleMotor_LONG(){}
     
-    Long_SimpleMotor(   // Driver có 4 chân điều khiển (L9110)
+    Makerlabvn_SimpleMotor_LONG(   // Driver có 4 chân điều khiển (L9110)
         uint8_t pinIn1, uint8_t pinIn2,
         uint8_t pinIn3, uint8_t pinIn4
     );
 
-    Long_SimpleMotor(   // Driver có 2 chân tốc độ và 4 chân điều khiển (L298)
+    Makerlabvn_SimpleMotor_LONG(   // Driver có 2 chân tốc độ và 4 chân điều khiển (L298)
         uint8_t pinEnA, uint8_t pinIn1, uint8_t pinIn2,
         uint8_t pinIn3, uint8_t pinIn4, uint8_t pinEnB
     );
 
-    Long_SimpleMotor(   // Địa chỉ I2C
+    Makerlabvn_SimpleMotor_LONG(   // Địa chỉ I2C
       uint8_t paI2cAddress
     );
 

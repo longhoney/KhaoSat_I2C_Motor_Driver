@@ -2,26 +2,26 @@
 /*                                  LIBRARY                                  */
 /* ------------------------------------------------------------------------- */
 
-#include "Long_SimpleMotor.h"
+#include "Makerlabvn_SimpleMotor_LONG.h"
 
 /* ------------------------------------------------------------------------- */
 /*                                  HÀM TẠO                                  */
 /* ------------------------------------------------------------------------- */
 
 //Khởi tạo đối tượng với địa chỉ I2C ...
-Long_SimpleMotor::Long_SimpleMotor(uint8_t paI2cAddress) {
-  this->type = Long_SimpleMotor_Type_I2C;
+Makerlabvn_SimpleMotor_LONG::Makerlabvn_SimpleMotor_LONG(uint8_t paI2cAddress) {
+  this->type = Makerlabvn_SimpleMotor_LONG_Type_I2C;
 }
 
 // Khởi tạo đối tượng với các chân đã khai báo
-Long_SimpleMotor::Long_SimpleMotor(   // L9110
+Makerlabvn_SimpleMotor_LONG::Makerlabvn_SimpleMotor_LONG(   // L9110
   uint8_t pinIn1, uint8_t pinIn2,   //Khai báo chân
   uint8_t pinIn3, uint8_t pinIn4)
 {
   setup(pinIn1, pinIn2, pinIn3, pinIn4);    
 }
 
-Long_SimpleMotor::Long_SimpleMotor(   // L298
+Makerlabvn_SimpleMotor_LONG::Makerlabvn_SimpleMotor_LONG(   // L298
   uint8_t pinEnA, uint8_t pinIn1, uint8_t pinIn2,
   uint8_t pinIn3, uint8_t pinIn4, uint8_t pinEnB)
 {
@@ -29,8 +29,8 @@ Long_SimpleMotor::Long_SimpleMotor(   // L298
 }
 
 //Khởi tạo và kiểm tra địa chỉ I2C
-void Long_SimpleMotor::setup(uint8_t paI2cAddress) {    // kế thừa setup(...)
-  this->type = Long_SimpleMotor_Type_I2C;
+void Makerlabvn_SimpleMotor_LONG::setup(uint8_t paI2cAddress) {    // kế thừa setup(...)
+  this->type = Makerlabvn_SimpleMotor_LONG_Type_I2C;
   if(i2cMotorDriver != NULL){
     delete i2cMotorDriver;
   }
@@ -40,12 +40,12 @@ void Long_SimpleMotor::setup(uint8_t paI2cAddress) {    // kế thừa setup(...
 }
 
 // Cấu hình chân dạng OUTPUT
-void Long_SimpleMotor::setup(   // Đây là nội dung người dùng nhập
+void Makerlabvn_SimpleMotor_LONG::setup(   // Đây là nội dung người dùng nhập
   uint8_t pinIn1, uint8_t pinIn2,
   uint8_t pinIn3, uint8_t pinIn4
 )
 {
-  this->type = Long_SimpleMotor_Type_L298_4Pin;   // Đưa nội dung người dùng nhập gán vào biến nội bộ của chương trình
+  this->type = Makerlabvn_SimpleMotor_LONG_Type_L298_4Pin;   // Đưa nội dung người dùng nhập gán vào biến nội bộ của chương trình
   // Biến nội bộ: _pinXX
   _pinIn1 = pinIn1;
   _pinIn2 = pinIn2; // ~PWM
@@ -63,12 +63,12 @@ void Long_SimpleMotor::setup(   // Đây là nội dung người dùng nhập
   digitalWrite(_pinIn4, LOW);
 }
   
-void Long_SimpleMotor::setup(
+void Makerlabvn_SimpleMotor_LONG::setup(
   uint8_t pinEnA, uint8_t pinIn1, uint8_t pinIn2,
   uint8_t pinIn3, uint8_t pinIn4, uint8_t pinEnB
 )
 {
-  this->type = Long_SimpleMotor_Type_L298_6Pin;
+  this->type = Makerlabvn_SimpleMotor_LONG_Type_L298_6Pin;
   _pinIn1 = pinIn1;
   _pinIn2 = pinIn2; // ~PWM
   _pinIn3 = pinIn3; // ~PWM
@@ -98,7 +98,7 @@ void Long_SimpleMotor::setup(
   Điều khiển motor kênh A quay thuận
   speed : tốc độ động cơ, đơn vị (%) phạm vi giá trị từ 0% đến 100%
 */
-void Long_SimpleMotor::motorA_fw(int speed)
+void Makerlabvn_SimpleMotor_LONG::motorA_fw(int speed)
 {
   // Xử lý giá trị tốc độ nhận được
   speed = calculate_speed(speed);
@@ -107,19 +107,19 @@ void Long_SimpleMotor::motorA_fw(int speed)
   // Điều khiển Motor bên TRÁI quay tới
   switch (this->type)   //Trỏ nội dung switch cần dùng tới biến type
   {
-  case Long_SimpleMotor_Type_L298_4Pin:
+  case Makerlabvn_SimpleMotor_LONG_Type_L298_4Pin:
     /* code */
     digitalWrite(_pinIn1, LOW);
     analogWrite(_pinIn2, speed); // ~PWM
     break;
-  case Long_SimpleMotor_Type_L298_6Pin:
+  case Makerlabvn_SimpleMotor_LONG_Type_L298_6Pin:
     /* code */
     digitalWrite(this->_pinIn1, 1);
     digitalWrite(this->_pinIn2, 0);
     analogWrite(this->_pinEnA, speed);
     break;
   
-  case Long_SimpleMotor_Type_I2C:
+  case Makerlabvn_SimpleMotor_LONG_Type_I2C:
     i2cMotorDriver->MA(1, speed);
     break;
 
@@ -132,7 +132,7 @@ void Long_SimpleMotor::motorA_fw(int speed)
  Điều khiển motor kênh B quay thuận
   speed : tốc độ động cơ, đơn vị (%) phạm vi giá trị từ 0% đến 100%
 */
-void Long_SimpleMotor::motorB_fw(int speed)
+void Makerlabvn_SimpleMotor_LONG::motorB_fw(int speed)
 {
   // Xử lý giá trị tốc độ nhận được
   speed = calculate_speed(speed);
@@ -141,18 +141,18 @@ void Long_SimpleMotor::motorB_fw(int speed)
   // Điều khiển Motor bên PHẢI quay tới
   switch (this->type)
   {
-  case Long_SimpleMotor_Type_L298_4Pin:
+  case Makerlabvn_SimpleMotor_LONG_Type_L298_4Pin:
     digitalWrite(_pinIn4, LOW);
     analogWrite(_pinIn3, speed); // ~PWM
     break;
-  case Long_SimpleMotor_Type_L298_6Pin:
+  case Makerlabvn_SimpleMotor_LONG_Type_L298_6Pin:
     /* code */
     digitalWrite(this->_pinIn3, 0);
     digitalWrite(this->_pinIn4, 1);
     analogWrite(this->_pinEnB, speed);
     break;
   
-  case Long_SimpleMotor_Type_I2C:
+  case Makerlabvn_SimpleMotor_LONG_Type_I2C:
     i2cMotorDriver->MB(1, speed);
     break;
 
@@ -167,7 +167,7 @@ void Long_SimpleMotor::motorB_fw(int speed)
   Điều khiển motor kênh A quay nghịch
   speed : tốc độ động cơ, đơn vị (%), phạm vi giá trị từ 0% đến 100%
 */
-void Long_SimpleMotor::motorA_bw(int speed)
+void Makerlabvn_SimpleMotor_LONG::motorA_bw(int speed)
 {
   // Xử lý giá trị tốc độ nhận được
   speed = calculate_speed(speed);
@@ -175,20 +175,20 @@ void Long_SimpleMotor::motorA_bw(int speed)
   // Điều khiển Motor bên TRÁI quay lùi
   switch (this->type)
   {
-  case Long_SimpleMotor_Type_L298_4Pin:
+  case Makerlabvn_SimpleMotor_LONG_Type_L298_4Pin:
     // digitalWrite(_pinIn1, HIGH);
     // analogWrite(_pinIn2, 255 - speed); // ~PWM
     analogWrite(_pinIn1, speed);
     digitalWrite(_pinIn2, LOW);
     break;
-  case Long_SimpleMotor_Type_L298_6Pin:
+  case Makerlabvn_SimpleMotor_LONG_Type_L298_6Pin:
     /* code */
     digitalWrite(this->_pinIn1, 0);
     digitalWrite(this->_pinIn2, 1);
     analogWrite(this->_pinEnA, speed);
     break;
   
-  case Long_SimpleMotor_Type_I2C:
+  case Makerlabvn_SimpleMotor_LONG_Type_I2C:
     i2cMotorDriver->MA(0, speed);
     break;
 
@@ -201,7 +201,7 @@ void Long_SimpleMotor::motorA_bw(int speed)
   Điều khiển motor kênh B quay nghịch
   speed : tốc độ động cơ, đơn vị (%), phạm vi giá trị từ 0% đến 100%
 */
-void Long_SimpleMotor::motorB_bw(int speed)
+void Makerlabvn_SimpleMotor_LONG::motorB_bw(int speed)
 {
   // Xử lý giá trị tốc độ nhận được
   speed = calculate_speed(speed);
@@ -209,20 +209,20 @@ void Long_SimpleMotor::motorB_bw(int speed)
   // Điều khiển Motor bên PHẢI quay lùi
   switch (this->type)
   {
-  case Long_SimpleMotor_Type_L298_4Pin:
+  case Makerlabvn_SimpleMotor_LONG_Type_L298_4Pin:
     // digitalWrite(_pinIn4, HIGH);
     // analogWrite(_pinIn3, 255 - speed); // ~PWM
     analogWrite(_pinIn4, speed); // ~PWM
     digitalWrite(_pinIn3, LOW);
     break;
-  case Long_SimpleMotor_Type_L298_6Pin:
+  case Makerlabvn_SimpleMotor_LONG_Type_L298_6Pin:
     /* code */
     digitalWrite(this->_pinIn3, 1);
     digitalWrite(this->_pinIn4, 0);
     analogWrite(this->_pinEnB, speed);
     break;
   
-  case Long_SimpleMotor_Type_I2C:
+  case Makerlabvn_SimpleMotor_LONG_Type_I2C:
     i2cMotorDriver->MB(0, speed);
     break;
 
@@ -233,7 +233,7 @@ void Long_SimpleMotor::motorB_bw(int speed)
 /* ------------------------------------- Dừng motor ------------------------------------ */
 
 /*Điều khiển motor kênh A dừng lại*/
-void Long_SimpleMotor::motorA_stop()
+void Makerlabvn_SimpleMotor_LONG::motorA_stop()
 {
   // Điều khiển Motor bên TRÁI dừng lại
   // motorA_bw(0);
@@ -241,7 +241,7 @@ void Long_SimpleMotor::motorA_stop()
 }
 
 /*Điều khiển motor kênh B dừng lại*/
-void Long_SimpleMotor::motorB_stop()
+void Makerlabvn_SimpleMotor_LONG::motorB_stop()
 {
   // Điều khiển Motor bên PHẢI dừng lại
   // motorB_bw(0);
@@ -257,7 +257,7 @@ void Long_SimpleMotor::motorB_stop()
   speedA : tốc độ động cơ kênh A, bên TRÁI của xe. Phạm vi giá trị từ 0% đến 100%
   speedB : tốc độ động cơ kênh B, bên PHẢI của xe. Phạm vi giá trị từ 0% đến 100%
 */
-void Long_SimpleMotor::car_fw(int speedA, int speedB)   //Dùng giá trị dữ liệu người dùng nhập
+void Makerlabvn_SimpleMotor_LONG::car_fw(int speedA, int speedB)   //Dùng giá trị dữ liệu người dùng nhập
 {
   // Xử lý giá trị tốc độ nhận được
   speedA = calculate_speed(speedA);
@@ -272,7 +272,7 @@ void Long_SimpleMotor::car_fw(int speedA, int speedB)   //Dùng giá trị dữ 
   speedA : tốc độ động cơ kênh A, bên TRÁI của xe. Phạm vi giá trị từ 0% đến 100%
   speedB : tốc độ động cơ kênh B, bên PHẢI của xe. Phạm vi giá trị từ 0% đến 100%
 */
-void Long_SimpleMotor::car_bw(int speedA, int speedB)
+void Makerlabvn_SimpleMotor_LONG::car_bw(int speedA, int speedB)
 {
   // Xử lý giá trị tốc độ nhận được
   speedA = calculate_speed(speedA);
@@ -283,7 +283,7 @@ void Long_SimpleMotor::car_bw(int speedA, int speedB)
 }
 
 // Rút gọn hàm điều khiển xe thành hàm car_run
-void Long_SimpleMotor::car_run(int speedA, int speedB){
+void Makerlabvn_SimpleMotor_LONG::car_run(int speedA, int speedB){
   if(speedA>0){
     motorA_fw(speedA);
   }else{
@@ -305,7 +305,7 @@ void Long_SimpleMotor::car_run(int speedA, int speedB){
   Điều khiển xe xoay trái
   speed : tốc độ động cơ, đơn vị (%). Phạm vi giá trị từ 0% đến 100%
 */
-void Long_SimpleMotor::car_rotateL(int speed)
+void Makerlabvn_SimpleMotor_LONG::car_rotateL(int speed)
 {
   // Xử lý giá trị tốc độ nhận được
   speed = calculate_speed(speed);
@@ -318,7 +318,7 @@ void Long_SimpleMotor::car_rotateL(int speed)
  * Điều khiển xe xoay phải
   speed : tốc độ động cơ, đơn vị (%). Phạm vi giá trị từ 0% đến 100%
 */
-void Long_SimpleMotor::car_rotateR(int speed)
+void Makerlabvn_SimpleMotor_LONG::car_rotateR(int speed)
 {
   // Xử lý giá trị tốc độ nhận được
   speed = calculate_speed(speed);
@@ -332,7 +332,7 @@ void Long_SimpleMotor::car_rotateR(int speed)
 /**
  * Điều khiển xe dừng lại
  */
-void Long_SimpleMotor::car_stop()
+void Makerlabvn_SimpleMotor_LONG::car_stop()
 {
   motorA_stop(); // Điều khiển motor kênh A dừng lại
   motorB_stop(); // Điều khiển motor kênh B dừng lại
@@ -346,7 +346,7 @@ void Long_SimpleMotor::car_stop()
  * Đảm bảo giá trị tốc độ (%) nhận được trong khoảng 0% đến 100%
  * Đồng thời chuyển đổi tốc độ (%) sang thang (PWM) tương ứng
  */
-int Long_SimpleMotor::calculate_speed(int speed)    //Dữ liệu người dùng nhập vào
+int Makerlabvn_SimpleMotor_LONG::calculate_speed(int speed)    //Dữ liệu người dùng nhập vào
 {
   // Đảm bảo giá trị tốc độ (%) nằm trong khoảng cho phép
   speed = constrain(speed, 0, 100);   // https://docs.arduino.cc/language-reference/en/functions/math/constrain/
@@ -357,10 +357,10 @@ int Long_SimpleMotor::calculate_speed(int speed)    //Dữ liệu người dùng
   return speed;   //nhận speed từ người dùng, xong trả về speed. Cùng tên biến có làm sao không
 }
 
-void Long_SimpleMotor::loop(){
+void Makerlabvn_SimpleMotor_LONG::loop(){
   switch (getState())
   {
-  case Long_SimpleMotor_State_moveFrom0:
+  case Makerlabvn_SimpleMotor_LONG_State_moveFrom0:
     
     break;
   

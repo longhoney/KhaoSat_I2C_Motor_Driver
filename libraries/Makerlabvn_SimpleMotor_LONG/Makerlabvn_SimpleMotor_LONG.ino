@@ -1,9 +1,9 @@
 /*
   Build for Arduino Uno/ MKE-Creator
-  Use 4 PWM pins
+  Use 4 PWM pins // L298 6 Pins
 */
 //Khai báo thư viện
-#include "Long_SimpleMotor.h"
+#include "Makerlabvn_SimpleMotor_LONG.h"
 
 // Định nghĩa chân cho L9110
 // #define PIN_IN1 3  //! D3  (~) --> A-1B
@@ -24,7 +24,7 @@
 
 
 //Khai báo đối tượng d9110 thuộc class Makerlabvn_SimpleMotor
-Long_SimpleMotor d9110;
+Makerlabvn_SimpleMotor_LONG d9110;
 
 void setup() {
   // put your setup code here, to run once:
